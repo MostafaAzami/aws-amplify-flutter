@@ -1,0 +1,18 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 16
+    commands:
+      - curl -s https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.19.6-stable.tar.xz | tar xJ
+      - export PATH=$PWD/flutter/bin:$PATH
+      - flutter doctor
+      - flutter pub get
+  build:
+    commands:
+      - flutter build web
+artifacts:
+  base-directory: build/web
+  files:
+    - '**/*'
